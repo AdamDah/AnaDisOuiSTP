@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8b0000, #ff2e63);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 800px;
+    padding: 40px;
+    z-index: 1;
+    position: relative;
+}
+
+/* DECOR IMAGES (derrière texte) */
+.decor-img {
+    position: absolute;
+    z-index: 0; /* derrière le texte */
+    opacity: 0.7; /* un peu transparent */
+}
+
+/* TEXTE ET BOUTON AU DESSUS DES IMAGES */
+#questionPage .question,
+#yesBtn {
+    position: relative;
+    z-index: 1;
+}
+
+.question {
+    font-family: 'Dancing Script', cursive;
+    font-size: 44px;
+    line-height: 1.5;
+    margin-bottom: 60px;
+}
+
+/* BOUTON OUI GROS, ROND ET PREMIER PLAN */
+#yesBtn {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    font-size: 28px;
+    border: 4px solid #ff0000;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 999;
+    position: relative;
+}
+
+#yesBtn:hover {
+    background: #ff0000;
+    color: white;
+}
+
+/* BOUTON NON */
+#noBtn {
+    position: fixed;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(2); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.hidden {
+    display: none;
+}
+
+.page {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+img {
+    max-width: 250px;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+.program-block {
+    margin-bottom: 25px;
+    font-size: 18px;
+    opacity: 0.95;
+}
+
+.lilo img {
+    width: 190px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE QUESTION -->
+<div class="container page" id="questionPage">
+
+    <!-- Images décoratives gauche -->
+    <div class="decor-img" style="top: 20px; left: 20px; transform: rotate(-15deg);">
+        <img src="vous1.png" width="80">
+    </div>
+    <div class="decor-img" style="top: 150px; left: 40px; transform: rotate(10deg);">
+        <img src="vous2.png" width="80">
+    </div>
+    <div class="decor-img" style="bottom: 50px; left: 60px; transform: rotate(-5deg);">
+        <img src="vous1.png" width="80">
+    </div>
+
+    <!-- Images décoratives droite -->
+    <div class="decor-img" style="top: 50px; right: 30px; transform: rotate(12deg);">
+        <img src="vous2.png" width="80">
+    </div>
+    <div class="decor-img" style="top: 200px; right: 50px; transform: rotate(-10deg);">
+        <img src="vous1.png" width="80">
+    </div>
+    <div class="decor-img" style="bottom: 70px; right: 70px; transform: rotate(8deg);">
+        <img src="vous2.png" width="80">
+    </div>
+
+    <div class="question">
+        ANA 💖<br>
+        Mon amoureuse 💋<br>
+        De ma vida ❤️<br>
+        De mon corazón 💘 <br>
+        Ya qalbi 💞<br>
+        Veux-tu être ma VALENTINE ? 💍🌹✨
+    </div>
+
+    <button id="yesBtn">OUI 💗</button>
+</div>
+
+<button id="noBtn">non</button>
+
+<!-- PAGE PROGRAMME -->
+<div class="container hidden page" id="programPage">
+    <h2>14 février 💌✨</h2>
+
+    <div class="program-block">
+        🍽 Dîner aux chandelles 🕯️💘<br>
+        🥩 Steak<br>
+        🍟 Frites<br>
+        🥗 Salade<br>
+        🍰 Gâteau fait avec amour tu connais
+    </div>
+
+    <div class="program-block">
+        💃 Just Dance 🔥🎶<br>
+        On va faire des chorees comme t'aimes trop mon baby 🎧✨
+    </div>
+
+    <div class="program-block">
+        🕯️ Activite plus calme : Bougies ✨<br>
+        On va enfin les faire 💞🌙
+    </div>
+
+    <div class="program-block lilo">
+        + Special guest 🐶💖<br>
+        Lilo 🥹✨<br>
+        <img src="lilo.jpg" alt="Lilo">
+    </div>
+</div>
+
+<!-- PAGE TOZ -->
+<div class="container hidden page" id="tozPage">
+    <h2>😳 TES SAH TU TOUCHES LE NON 😳</h2>
+    <p>tfou</p>
+    <img src="toz.jpg" alt="TOZ">
+</div>
+
+<script>
+let yesCount = 0;
+let noCount = 0;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const questionPage = document.getElementById("questionPage");
+const programPage = document.getElementById("programPage");
+const tozPage = document.getElementById("tozPage");
+const music = document.getElementById("bgMusic");
+
+/* TELEPORTATION + COMPTEUR AU SURVOL */
+noBtn.addEventListener("mouseover", () => {
+    noCount++; // chaque survol compte
+    if (noCount >= 10) {
+        questionPage.classList.add("hidden");
+        tozPage.classList.remove("hidden");
+        noBtn.style.display = "none"; // disparait
+        return;
+    }
+
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    const maxX = window.innerWidth - btnWidth - 10;
+    const maxY = window.innerHeight - btnHeight - 10;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+/* CLIQUE SUR OUI */
+yesBtn.addEventListener("click", () => {
+    if (yesCount === 0) {
+        music.play();
+    }
+
+    yesCount++;
+    yesBtn.style.transform = `scale(${1 + yesCount * 0.25})`;
+
+    if (yesCount >= 10) {
+        yesBtn.style.animation = "explode 0.6s forwards";
+
+        setTimeout(() => {
+            questionPage.classList.add("hidden");
+            programPage.classList.remove("hidden");
+            noBtn.style.display = "none"; // disparait
+        }, 600);
+    }
+});
+</script>
+
+</body>
+</html>
